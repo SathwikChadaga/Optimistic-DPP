@@ -1,2 +1,2 @@
 # Optimistic-DPP
-DPOP simulations
+DPOP simulations.

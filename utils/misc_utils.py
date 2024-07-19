@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import networkx as nx
+from scipy.optimize import lsq_linear   
 
 def prepare_adjacency(edges, N_nodes):
     N_edges = len(edges)
@@ -48,3 +50,31 @@ def plot_results(parameter_list, x_values, y_values, parameter_name):
         plt.plot(x_values, y_values[ii,:], label = parameter_name + ' = ' + str(parameter_list[ii]))
     plt.legend()
     plt.show()
+    
+def visualize_network(edges_list, N_nodes):
+    # add edges
+    G = nx.DiGraph()
+    for edge_ii in range(len(edges_list)):
+        G.add_edge(edges_list[edge_ii][0]+1, edges_list[edge_ii][1]+1)  
+        
+    # relabel nodes
+    mapping = {v+1 : v for v in range(N_nodes)}
+    G = nx.relabel_nodes(G, mapping)
+
+    # Visualize the network
+    pos = nx.spectral_layout(G) 
+    nx.draw_networkx(G, pos, with_labels=True)
+
+    plt.title("Network Visualization")
+    plt.show()
+
+def fit_regret_curve(T_horizon_list, dpop_regret):
+    X = np.ones([T_horizon_list.shape[0], 3])
+    X[:,1] = T_horizon_list**(1/3) 
+    X[:,2] = (T_horizon_list**(1/2))*np.log(T_horizon_list)
+
+    regret_fit_dpop = lsq_linear(X, dpop_regret, bounds=(0, 100))
+    theoretical_dpop_regret = X@regret_fit_dpop.x
+
+    return theoretical_dpop_regret, regret_fit_dpop.x
+

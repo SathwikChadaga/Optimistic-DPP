@@ -58,7 +58,7 @@ class OnlineQueueNetwork:
 
         # get observed costs and update cost estimates
         self.edge_num_pulls += (planned_edge_rates > 0)
-        self.edge_cost_means[planned_edge_rates > 0] += (self.get_observation()[planned_edge_rates > 0] - self.edge_cost_means[planned_edge_rates > 0])/self.edge_num_pulls[planned_edge_rates > 0]
+        self.edge_cost_means[planned_edge_rates > 0] += (self.get_observation() - self.edge_cost_means)[planned_edge_rates > 0]/self.edge_num_pulls[planned_edge_rates > 0]
         
         # update current time step and return 0
         self.tt += 1

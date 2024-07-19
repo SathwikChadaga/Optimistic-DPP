@@ -1,9 +1,23 @@
 import numpy as np
-import utils.misc_utils as mutil
-import utils.network as queuenetol
+import utils.misc as mutil
+import utils.network as qnet
 import utils.policies as polc
 
-def run_experiment(simulation_params, policy = 'dpop', custom_seed = None):
+def set_simulation_params(simulation_params, T_horizon):
+    # set T
+    simulation_params.T_horizon = T_horizon
+
+    # set nu
+    simulation_params.nu = T_horizon**(1/3)   
+
+    # set delta
+    noise_variance = simulation_params.noise_variance
+    if(noise_variance == 0): simulation_params.delta = 1
+    else: simulation_params.delta = T_horizon**(-2*noise_variance/(simulation_params.beta-2*noise_variance))
+
+    return simulation_params
+
+def run_experiment(simulation_params, policy = 'dpop', custom_seed = None, queueing_network = None):
     # store algorithm parameters
     beta  = simulation_params.beta
     delta = simulation_params.delta
@@ -11,7 +25,7 @@ def run_experiment(simulation_params, policy = 'dpop', custom_seed = None):
 
     # define network from the given parameters
     if(custom_seed != None): np.random.seed(custom_seed)
-    queueing_network = queuenetol.OnlineQueueNetwork(simulation_params)
+    if(queueing_network == None): queueing_network = qnet.OnlineQueueNetwork(simulation_params)
 
     network_status = 0
     while(network_status == 0):

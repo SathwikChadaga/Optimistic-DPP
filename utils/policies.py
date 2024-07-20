@@ -18,7 +18,7 @@ def get_static_policy(node_edge_adjacency, source_node, destination_node, true_c
     
     return result.x
 
-def max_weight_policy(queue_state, node_edge_adjacency, cost_matrix, edge_capacities, V):
+def max_weight_policy(queue_state, node_edge_adjacency, cost_matrix, edge_capacities, nu):
     N_runs = queue_state.shape[0]
     N_nodes = node_edge_adjacency.shape[0]
     N_edges = node_edge_adjacency.shape[1]
@@ -38,7 +38,7 @@ def max_weight_policy(queue_state, node_edge_adjacency, cost_matrix, edge_capaci
     queue_differentials[queue_differentials < 0] = 0
 
     # get edge weights adding the penalty term (adds -\infty for non-existent edges) 
-    edge_weights = queue_differentials - V*cost_matrix
+    edge_weights = queue_differentials - nu*cost_matrix
 
     # send max rate on edges with positive edge weights
     scheduled_edges = (edge_weights > 0)

@@ -8,7 +8,7 @@ def set_simulation_params(simulation_params, T_horizon):
     simulation_params.T_horizon = T_horizon
 
     # set nu
-    simulation_params.nu = T_horizon**(1/3)   
+    simulation_params.nu = T_horizon**(1/3) # T_horizon**(2/3)
 
     # set delta
     noise_variance = simulation_params.noise_variance
@@ -24,8 +24,8 @@ def run_experiment(simulation_params, policy = 'dpop', custom_seed = None, queue
     nu    = simulation_params.nu
 
     # define network from the given parameters
-    if(custom_seed != None): np.random.seed(custom_seed)
-    if(queueing_network == None): queueing_network = qnet.OnlineQueueNetwork(simulation_params)
+    if(queueing_network == None): 
+        queueing_network = qnet.OnlineQueueNetwork(simulation_params, custom_seed)
 
     network_status = 0
     while(network_status == 0):

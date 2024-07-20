@@ -1,7 +1,7 @@
 import numpy as np
 
 class OnlineQueueNetwork:
-    def __init__(self, simulation_params):
+    def __init__(self, simulation_params, custom_seed = None):
         # topology information
         self.node_edge_adjacency = simulation_params.node_edge_adjacency 
         self.source_node = simulation_params.source_node
@@ -31,6 +31,7 @@ class OnlineQueueNetwork:
         self.edge_num_pulls = np.zeros([self.N_runs, self.N_edges])
         
         # initial exploration 
+        if(custom_seed != None): np.random.seed(custom_seed)
         self.initial_exploration()
     
     def step(self, planned_edge_rates):

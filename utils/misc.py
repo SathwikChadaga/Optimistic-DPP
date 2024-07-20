@@ -63,6 +63,7 @@ def visualize_network(edges_list, N_nodes):
 
     # Visualize the network
     pos = nx.spectral_layout(G) 
+    # pos = nx.spring_layout(G) 
     nx.draw_networkx(G, pos, with_labels=True)
 
     plt.title("Network Visualization")

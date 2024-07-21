@@ -12,12 +12,13 @@ def set_simulation_params(simulation_params, T_horizon):
 
     # set delta
     noise_variance = simulation_params.noise_variance
-    if(noise_variance == 0): simulation_params.delta = 1
+    if(noise_variance == 0): 
+        simulation_params.delta = 1
     else: simulation_params.delta = T_horizon**(-2*noise_variance/(simulation_params.beta-2*noise_variance))
 
     return simulation_params
 
-def run_experiment(simulation_params, policy = 'dpop', custom_seed = None, queueing_network = None):
+def run_experiment(simulation_params, custom_seed = None, queueing_network = None):
     # store algorithm parameters
     beta  = simulation_params.beta
     delta = simulation_params.delta
@@ -33,10 +34,7 @@ def run_experiment(simulation_params, policy = 'dpop', custom_seed = None, queue
         queue_state = queueing_network.queues[:, :, queueing_network.tt]
 
         # estimate edge costs from previous observation
-        if(policy == 'dpop'): 
-            estimated_edge_costs = queueing_network.edge_cost_means - np.sqrt(beta*np.log((queueing_network.tt+1)/delta)/queueing_network.edge_num_pulls)
-        else: # policy == 'oracle' 
-            estimated_edge_costs = queueing_network.true_edge_costs
+        estimated_edge_costs = queueing_network.edge_cost_means - np.sqrt(beta*np.log((queueing_network.tt+1)/delta)/queueing_network.edge_num_pulls)
         estimated_cost_matrix = mutil.prepare_cost_matrix(queueing_network.node_edge_adjacency, estimated_edge_costs)
 
         # get planned transmissions from the policy

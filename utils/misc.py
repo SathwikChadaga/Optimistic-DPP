@@ -71,7 +71,7 @@ def visualize_network(edges_list, N_nodes):
 
 def fit_regret_curve(T_horizon_list, dpop_regret, start_index = 0):
     X = np.ones([T_horizon_list.shape[0], 2])
-    X[:,1] = T_horizon_list**(2/3) # + (T_horizon_list**(1/2))*np.log(T_horizon_list) 
+    X[:,1] = T_horizon_list**(2/3) # (T_horizon_list**(1/2))*np.log(T_horizon_list) 
 
     regret_fit_dpop = lsq_linear(X[start_index:,:], dpop_regret[start_index:], bounds=([-np.inf,0], [np.inf,np.inf]))
     theoretical_dpop_regret = X@regret_fit_dpop.x

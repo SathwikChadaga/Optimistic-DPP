@@ -25,7 +25,7 @@ def plot_regret_curve(ax, arrival_rate, noise_variance_list, show_theoretical, s
     # iterate for given values of noise variances
     for jj, noise_variance in enumerate(noise_variance_list):
         current_result = np.load(sweep_results_folder + '/regret-lambda-' + str(arrival_rate).replace('.','_') + '-var-' + str(noise_variance).replace('.','_') + '.npy')     
-        ax.plot(current_result[0,:], current_result[1,:] - current_result[2,:], plot_style[jj], label = '$\sigma$ = ' + str(noise_variance), fillstyle = 'none', markeredgewidth=2, ms=8)  
+        ax.plot(current_result[0,:], current_result[1,:] - current_result[2,:], plot_style[jj], label = '$\sigma^2$ = ' + str(noise_variance), fillstyle = 'none', markeredgewidth=2, ms=8)  
 
         if(show_theoretical[jj]):
             theoretical_regret = fit_regret_curve(current_result[0,:], current_result[1,:] - current_result[2,:], start_index = 6)

@@ -39,7 +39,7 @@ def plot_regret_curve(ax, arrival_rate, noise_variance_list, show_theoretical, s
 
     # show values in scientific notation and show exponent near axes
     ax.set_xticks(ticks=2000*np.arange(1,11), labels=['{:1.0f}'.format(s) for s in 2*np.arange(1,11)])
-    ax.text(18500, -1125, '$\\times 10^3$', fontdict=None, size=label_font_size)
+    ax.text(18500, -1200, '$\\times 10^3$', fontdict=None, size=label_font_size)
     
     # show values in scientific notation and show exponent near axes
     ax.set_yticks(ticks=1000*np.arange(0,9), labels=['{:1.0f}'.format(s) for s in np.arange(0,9)])
@@ -60,7 +60,7 @@ def plot_backlog_curve(ax, unknownT_backlog_at_tt, knownT_backlog_at_tt, oracle_
 
     # show values in scientific notation and show exponent near axes
     ax.set_xticks(ticks=1000*np.arange(0,11), labels=['{:1.0f}'.format(s) for s in np.arange(0,11)])
-    ax.text(9100, -7.9, '$\\times 10^3$', fontdict=None, size=label_font_size)
+    ax.text(9100, -9, '$\\times 10^3$', fontdict=None, size=label_font_size)
 
     ax.set_xlim([-250,10000])
     ax.set_ylim([0,65])
@@ -79,7 +79,7 @@ def plot_transmission_cost_curve(ax, unknownT_tran_cost_at_tt, knownT_tran_cost_
 
     # show values in scientific notation and show exponent near axes
     ax.set_xticks(ticks=1000*np.arange(0,11), labels=['{:1.0f}'.format(s) for s in np.arange(0,11)])
-    ax.text(9100, -0.61, '$\\times 10^3$', fontdict=None, size=label_font_size)
+    ax.text(9100, -0.7, '$\\times 10^3$', fontdict=None, size=label_font_size)
 
     ax.set_xlim([-250,10000])
     ax.set_ylim([0,5])

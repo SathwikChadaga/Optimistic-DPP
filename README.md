@@ -1,6 +1,7 @@
 # Optimistic-DPP
 
 This repository contains simulations of the drift-plus-optimistic-penalty policy from [1]. Please cite [1] if you use any of this repository's code in your work.
+
 [1] S. Chadaga, E. Modiano, "Drift Plus Optimistic Penalty - A Learning Framework for Stochastic Network Optimization," IEEE INFOCOM 2025 - IEEE Conference on Computer Communications, London, 2025.
 
 ## Files

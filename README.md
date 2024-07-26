@@ -7,7 +7,7 @@ This repository contains simulations of the drift-plus-optimistic-penalty policy
 ## Files
 - `dpop_regret.ipynb` runs the experiment for different values of time horizon and plots the regret curve. `regret_sweep.ipynb` plots the regret for different levels of noise and arrival rates.
 - `dpop_run.ipynb` runs the experimnet for a given time horizon and plots the resulting queue backlogs and transmission costs.
-- `plot_results.ipynb` pltos the saved results.
+- `plot_results.ipynb` plots the saved results.
 - `utils` contains utility codes required to run the above three programs.
 
 ## Abstract From Paper

@@ -1,9 +1,13 @@
 # Optimistic-DPP
 
-- '''dpop_regret.ipynb'''
-- '''dpop_run.ipynb'''
-- ''plot_results.ipynb''
-- 'regret_sweep.ipynb'
+This repository contains simulations of the drift-plus-optimistic-penalty policy from [1]. Please cite [1] if you use any of this repository's code in your work.
+[1] S. Chadaga, E. Modiano, "Drift Plus Optimistic Penalty - A Learning Framework for Stochastic Network Optimization," IEEE INFOCOM 2025 - IEEE Conference on Computer Communications, London, 2025.
 
-## Abstract
+## Files
+- `dpop_regret.ipynb` runs the experiment for different values of time horizon and plots the regret curve. `regret_sweep.ipynb` plots the regret for different levels of noise and arrival rates.
+- `dpop_run.ipynb` runs the experimnet for a long duration and plots the resulting queue backlogs and transmission costs.
+- `plot_results.ipynb` pltos the saved results.
+- `utils` contains utility codes required to run the above three programs.
+
+## Abstract From Paper
 We consider the problem of joint routing and scheduling in queueing networks, where the edge transmission costs are unknown. At each time-slot, the network controller receives noisy observations of transmission costs only for those edges it picks for transmission. The network controller’s objective is to take routing and scheduling decisions so that the total expected cost is minimized. This problem exhibits an exploration-exploitation trade-off, however, previous bandit-style solutions cannot be directly applied to this problem due to the queueing dynamics. In order to ensure network stability, the network controller needs to optimize throughput and cost simultaneously. We develop a network control policy using techniques from Lyapunov drift-plus-penalty optimization and multi-arm bandits. We show that the policy achieves a sub-linear regret of order \(O(T^2/3)\), as compared to the best policy that has complete knowledge of arrivals and costs. 

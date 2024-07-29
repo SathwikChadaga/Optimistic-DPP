@@ -4,7 +4,7 @@ This repository contains simulations of the drift-plus-optimistic-penalty policy
 
 [1] S. Chadaga, E. Modiano, "Drift Plus Optimistic Penalty - A Learning Framework for Stochastic Network Optimization," IEEE INFOCOM 2025 - IEEE Conference on Computer Communications, London, 2025.
 
-## Files
+## Files Description
 - `dpop_regret.ipynb` runs the experiment for different values of time horizon and shows the regret curve.
 - `regret_sweep.ipynb` shows the regret for different levels of noise and arrival rates.
 - `dpop_run.ipynb` runs the experiment for a given time horizon and shows the resulting queue backlogs and transmission costs.

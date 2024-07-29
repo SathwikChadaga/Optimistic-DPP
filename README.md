@@ -1,4 +1,4 @@
-# Optimistic-DPP
+# Drift Plus Optimistic Penalty
 
 This repository contains simulations of the drift-plus-optimistic-penalty policy from [1]. Please cite [1] if you use any of this repository's code in your work.
 

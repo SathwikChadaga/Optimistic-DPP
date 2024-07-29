@@ -3,25 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from scipy.optimize import lsq_linear   
 
-def prepare_adjacency(edges, N_nodes):
-    N_edges = len(edges)
-    node_edge_adjacency = np.zeros([N_nodes, N_edges]) # node_edge_adjacency_(v,e) = {-1 if e = Out(v), 1 if e = In(v), 0 otherwise}
-    for ll, vv in enumerate(edges):
-        node_edge_adjacency[vv[0], ll] = -1
-        node_edge_adjacency[vv[1], ll] = 1
-
-    return node_edge_adjacency
-
-def prepare_cost_matrix(node_edge_adjacency, costs):
-    if(len(costs.shape) > 1): 
-        cost_matrix = np.expand_dims(node_edge_adjacency == -1, axis=0)*costs[:, np.newaxis, :] + 0.0
-        cost_matrix[:, node_edge_adjacency != -1] = np.inf
-
-    else: 
-        cost_matrix = (node_edge_adjacency == -1)*costs + 0.0
-        cost_matrix[node_edge_adjacency != -1] = np.inf
-    return cost_matrix
-
+# class to hold all simulaiton parameters
 class SimulationParameters:
     def __init__(self, 
                  node_edge_adjacency, 
@@ -45,12 +27,28 @@ class SimulationParameters:
         self.true_edge_costs     = true_edge_costs
         self.edge_capacities     = edge_capacities
 
-def plot_results(parameter_list, x_values, y_values, parameter_name):
-    for ii in range(parameter_list.shape[0]):
-        plt.plot(x_values, y_values[ii,:], label = parameter_name + ' = ' + str(parameter_list[ii]))
-    plt.legend()
-    plt.show()
-    
+# prepares node to edge adjacency
+def prepare_adjacency(edges, N_nodes):
+    N_edges = len(edges)
+    node_edge_adjacency = np.zeros([N_nodes, N_edges]) # node_edge_adjacency_(v,e) = {-1 if e = Out(v), 1 if e = In(v), 0 otherwise}
+    for ll, vv in enumerate(edges):
+        node_edge_adjacency[vv[0], ll] = -1
+        node_edge_adjacency[vv[1], ll] = 1
+
+    return node_edge_adjacency
+
+# converts cost array into matrix
+def prepare_cost_matrix(node_edge_adjacency, costs):
+    if(len(costs.shape) > 1): 
+        cost_matrix = np.expand_dims(node_edge_adjacency == -1, axis=0)*costs[:, np.newaxis, :] + 0.0
+        cost_matrix[:, node_edge_adjacency != -1] = np.inf
+
+    else: 
+        cost_matrix = (node_edge_adjacency == -1)*costs + 0.0
+        cost_matrix[node_edge_adjacency != -1] = np.inf
+    return cost_matrix
+
+# plots the network topology
 def visualize_network(edges_list, N_nodes):
     # add edges
     G = nx.DiGraph()
@@ -62,13 +60,13 @@ def visualize_network(edges_list, N_nodes):
     G = nx.relabel_nodes(G, mapping)
 
     # Visualize the network
-    pos = nx.spectral_layout(G) 
-    # pos = nx.spring_layout(G) 
+    pos = nx.spectral_layout(G) # pos = nx.spring_layout(G) 
     nx.draw_networkx(G, pos, with_labels=True)
 
     plt.title("Network Visualization")
     plt.show()
 
+# fits regret curve into a theoretical curve
 def fit_regret_curve(T_horizon_list, dpop_regret, start_index = 0):
     X = np.ones([T_horizon_list.shape[0], 2])
     X[:,1] = T_horizon_list**(2/3) # (T_horizon_list**(1/2))*np.log(T_horizon_list) 

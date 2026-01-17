@@ -1,6 +1,6 @@
 # Drift Plus Optimistic Penalty
 
-Note: Checkout my new repository https://github.com/SathwikChadaga/Optimistic-DPP-Improved-Regret and new priprint [2] for the improved algorithms and multi-commodity simulations.
+Note: Checkout my new repository https://github.com/SathwikChadaga/Optimistic-DPP-Improved-Regret and new preprint [2] for the improved algorithms and multi-commodity simulations.
 
 This repository contains simulations of the drift-plus-optimistic-penalty policy from [1]. 
 

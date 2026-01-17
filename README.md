@@ -1,10 +1,10 @@
 # Drift Plus Optimistic Penalty
 
-Note: Checkout my new repository https://github.com/SathwikChadaga/Optimistic-DPP-Improved-Regret and new preprint [2] for the improved algorithms and multi-commodity simulations.
+*Note:* Checkout my new repository https://github.com/SathwikChadaga/Optimistic-DPP-Improved-Regret and new preprint [2] for the improved algorithms and multi-commodity simulations.
 
 This repository contains simulations of the drift-plus-optimistic-penalty policy from [1]. 
 
- ## References (Please cite [1] if you use any of this repository's code)
+ ## References (Please cite [1] if you use this repository's code)
 
 [1] S. Chadaga and E. Modiano, "Drift Plus Optimistic Penalty – A Learning Framework for Stochastic Network Optimization," IEEE INFOCOM 2025 - IEEE Conference on Computer Communications, London, United Kingdom, 2025, pp. 1-10, doi: 10.1109/INFOCOM55648.2025.11044621.
 
